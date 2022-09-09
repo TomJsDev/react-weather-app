@@ -1,0 +1,72 @@
+.accordion {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.25rem;
+	border-radius: 0.35rem;
+	box-shadow: 0.65rem 0.65rem 0.65rem rgb(0 0 0 / 10%);
+}
+
+.column {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	grid-column-gap: 0.5rem;
+	padding: 0.25rem 0;
+}
+
+.datetime {
+	margin-left: 1rem;
+}
+
+.day-forecast {
+	display: flex;
+	align-items: center;
+	height: 2.5rem;
+	padding: 0.25rem 1.25rem;
+	background-color: #f5f5f5;
+	border-radius: 0.25rem;
+	cursor: pointer;
+}
+
+.description {
+	flex: 1 1;
+	margin-right: 1rem;
+	text-align: right;
+}
+
+.detail-value {
+	font-weight: 500;
+}
+
+.details-forecast {
+	display: flex;
+	flex-direction: row;
+	column-gap: 2rem;
+	margin-left: 5.5rem;
+	color: #404040;
+}
+
+.forecast {
+	display: flex;
+	flex-direction: column;
+	row-gap: 0.5rem;
+	margin-top: 1rem;
+}
+
+.min-max-temperature {
+	color: #595959;
+}
+
+.title {
+	margin-left: 1rem;
+	font-size: 1.5rem;
+}
+
+.weather-icon-forecast {
+	width: 2.5rem;
+}
+
+.weekday {
+	font-weight: 500;
+	color: #212121;
+}

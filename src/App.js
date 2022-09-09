@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import CurrentWeather from './components/CurrentWeather'
+import Forecast from './components/Forecast'
+import SearchField from './components/SearchField'
+import { loadWeatherData } from './apis/openWeatherApi'
+import { loadCityTime } from './apis/geoApi'
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export const App = () => {
+	const [weatherData, setWeatherData] = useState(null)
+
+	const handleClickOption = async optionData => {
+		const id = optionData.id
+		const city = optionData.label
+		const [latitude, longitude] = optionData.value.split(' ')
+
+		const [time, newWeatherData] = await Promise.all([
+			loadCityTime(id),
+			loadWeatherData(latitude, longitude)
+		])
+
+		setWeatherData({ city, time, ...newWeatherData })
+	}
+
+	return (
+		<div className='container'>
+			<SearchField onClickOption={handleClickOption} />
+			{weatherData ? <CurrentWeather data={weatherData} /> : null}
+			{weatherData ? <Forecast data={weatherData} /> : null}
+		</div>
+	)
 }
 
-export default App;
+export default App
